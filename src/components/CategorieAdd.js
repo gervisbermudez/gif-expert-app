@@ -11,7 +11,7 @@ const CategorieAdd = ({setCategories}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim().length > 2) {
-            setCategories(categories => [...categories, inputValue]);
+            setCategories(categories => [inputValue, ...categories]);
             setInputValue("");
         }
     }
@@ -19,7 +19,9 @@ const CategorieAdd = ({setCategories}) => {
     return (
         <form onSubmit={handleSubmit} className="form-group">
             <input type="text" name="categorieName"
+                placeholder="Search Gif..."
                 value={inputValue}
+                className="form-control"
                 onChange={handdleInputChage} />
         </form>
     );
