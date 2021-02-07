@@ -1,28 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import GifCard from './GifCard';
-import { getGift } from '../utils/getGifs'
+
+import { useFetchGifs } from '../hooks/useFetchGifs'
 
 
 const GifGrid = ({ category }) => {
 
-    const [images, setImages] = useState([]);
+    const { data, loading } = useFetchGifs(category);
 
-    useEffect(() => {
-        getGift(category).then(setImages);
-    }, [category]);
+    console.log({ data, loading });
 
     return (
         <>
             <h3>{category}</h3>
-            <div className="card-columns">
-                {
-                    images.map((img, index) => {
-                        return (
-                            <GifCard key={`${index}`} img={img}></GifCard>
-                        )
-                    })
-                }
-            </div>
+            {
+                loading ? (<div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+                ) : (
+                        <div className="card-columns">
+                            {
+                                data.map((img, index) => {
+                                    return (
+                                        <GifCard key={`${index}`} img={img}></GifCard>
+                                    )
+                                })
+                            }
+                        </div>
+                    )
+            }
         </>
     );
 }
