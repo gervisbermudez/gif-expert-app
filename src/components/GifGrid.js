@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GifCard from './GifCard';
-
 import { useFetchGifs } from '../hooks/useFetchGifs'
 
-
 const GifGrid = ({ category }) => {
-
     const { data, loading } = useFetchGifs(category);
-
-    console.log({ data, loading });
-
     return (
         <>
             {
