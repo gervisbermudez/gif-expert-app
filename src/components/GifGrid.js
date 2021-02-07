@@ -12,13 +12,15 @@ const GifGrid = ({ category }) => {
 
     return (
         <>
-            <h3>{category}</h3>
             {
-                loading ? (<div className="spinner-border" role="status">
-                    <span className="sr-only">Loading...</span>
+                loading ? (<div className="d-flex justify-content-center">
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
                 </div>
                 ) : (
-                        <div className="card-columns">
+                    <div className="card-columns">
+                            <h3>{category}</h3>
                             {
                                 data.map((img, index) => {
                                     return (
